@@ -1,0 +1,213 @@
+[
+    {
+        "id": "6ff769707c7791ec",
+        "type": "tab",
+        "label": "Camera",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e1157956f94c9674",
+        "type": "http in",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "url": "${LOCATION}",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "e15050ac7005dab5",
+                "2bebbca7af1e00b5"
+            ]
+        ]
+    },
+    {
+        "id": "159aea7956fcf677",
+        "type": "http response",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "Image/jpeg"
+        },
+        "x": 850,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e15050ac7005dab5",
+        "type": "http request",
+        "z": "6ff769707c7791ec",
+        "name": "GET from Camera",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "${CAMERA_URL}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "d90a7eaaa0eac763",
+                "a709e4b23552f829"
+            ]
+        ]
+    },
+    {
+        "id": "d330306d0651c5a4",
+        "type": "debug",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "92e03b5a2e66442b",
+        "type": "catch",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "d330306d0651c5a4"
+            ]
+        ]
+    },
+    {
+        "id": "a709e4b23552f829",
+        "type": "file",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "filename": "/data/image.jpg",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 520,
+        "y": 340,
+        "wires": [
+            [
+                "443b115d769f0b08"
+            ]
+        ]
+    },
+    {
+        "id": "d90a7eaaa0eac763",
+        "type": "function",
+        "z": "6ff769707c7791ec",
+        "name": "Enable Reset",
+        "func": "msg.reset=1\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [
+                "2bebbca7af1e00b5",
+                "159aea7956fcf677"
+            ]
+        ]
+    },
+    {
+        "id": "2bebbca7af1e00b5",
+        "type": "trigger",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "pay",
+        "duration": "10",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "773b0469dda27d84"
+            ]
+        ]
+    },
+    {
+        "id": "773b0469dda27d84",
+        "type": "file in",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "filename": "/data/image.jpg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "159aea7956fcf677",
+                "0a21fec7ae965978"
+            ]
+        ]
+    },
+    {
+        "id": "443b115d769f0b08",
+        "type": "debug",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "0a21fec7ae965978",
+        "type": "debug",
+        "z": "6ff769707c7791ec",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 120,
+        "wires": []
+    }
+]
